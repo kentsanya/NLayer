@@ -1,5 +1,6 @@
 ﻿using BL.BusinessModels;
 using BL.Interfaces;
+using DataLayer.Entitys;
 using DataLayer.Repositories;
 
 namespace BL.Services
@@ -24,6 +25,8 @@ namespace BL.Services
                 if (payment.Pay(basket.SumPrice))
                 {
                     delivary.Delivary();
+                  
+                    //Will Add works with reposytory
                 }
                 else throw new Exception("Pay wasn`t done");
             }
