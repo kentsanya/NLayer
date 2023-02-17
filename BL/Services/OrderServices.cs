@@ -7,19 +7,28 @@ namespace BL.Services
     internal class OrderServices : IOrderServices
     {
         IUnitOfWork DB { get; }
-        public OrderServices(IUnitOfWork unit) 
-        {
+        IDiscount discount;
+        public OrderServices(IUnitOfWork unit, IDiscount discount) 
+        {   
+            this.discount = discount;
             DB= unit;
         }
       
 
-        void IOrderServices.MakeOrder(Basket basket, IDelivaryServices delivary, IDiscountService discount, IPaymentService payment)
+        void IOrderServices.MakeOrder(Basket basket, IDelivaryServices delivary,
+            IDiscountService discountservice, IPaymentService payment)
         {
-            if (basket != null) 
+            if (basket != null)
             {
-                discount.GetValuePriceBascket(basket, )
+                discountservice.GetValuePriceBascket(basket, discount);
+                if (payment.Pay(basket.SumPrice))
+                {
+                    delivary.Delivary();
+                }
+                else throw new Exception("Pay wasn`t done");
             }
-            if(payment.Pay(discount.GetValuePriceBascket())
+            else throw new Exception("Basket was empty");
+            
         }
     }
 }

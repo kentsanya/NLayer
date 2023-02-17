@@ -8,6 +8,6 @@ namespace BL.Interfaces
 {
     internal interface IPaymentService
     {
-        bool Pay();
+        bool Pay(decimal sum);
     }
 }

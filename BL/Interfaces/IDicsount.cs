@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.DTOModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace BL.Interfaces
 {
     internal interface IDiscount
     {
-        decimal Value();
+        decimal GetDiscount();
+
     }
 }

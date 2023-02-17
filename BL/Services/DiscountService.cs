@@ -7,7 +7,7 @@ namespace BL.Services
     {
         public void GetValuePriceBascket(Basket basket, Interfaces.IDiscount discount)
         {
-            basket.SumPrice = basket.SumPrice * discount.Value();
+            basket.SumPrice = basket.SumPrice * discount.GetDiscount();
         }
     }
 }
